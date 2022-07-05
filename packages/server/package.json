@@ -4,8 +4,5 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec 'tsc -b && node dist/index.js'"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
   }
 }
