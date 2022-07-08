@@ -6,11 +6,12 @@ const host = '127.0.0.1';
 
 const client = net.createConnection(port, host, () => {
     console.log('Connected');
-    client.write(randomString(100000));
-    client.write(randomString(100000));
-    client.write(randomString(100000));
-    client.write(randomString(100000));
-    client.destroy();
+
+    setInterval(() => {
+        client.write(randomString(100000), (err) => {
+            console.log(`write: ${err ? String(err) : 'ok'}`);
+        });
+    }, 5000);
 });
 
 client.on('data', data => {
@@ -20,3 +21,7 @@ client.on('data', data => {
 client.on('close', () => {
     console.log('Connection closed');
 });
+
+client.on('error', () => {
+    console.log('error');
+})
